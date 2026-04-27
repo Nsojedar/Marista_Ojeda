@@ -1,6 +1,6 @@
 /* 1. VARIABLES Y CONFIGURACIÓN BASE */
 :root {
-    --primario: #004a99;
+    --primario: #125dad;
     --secundario: #002d5e;
     --exito: #28a745;
     --error: #d9534f;
@@ -52,9 +52,21 @@ body {
 /* 4. TIPOGRAFÍA */
 h1 {
     color: var(--primario);
-    font-size: 2.4rem;
+    font-size: 2rem;
     margin-top: 10px;
     letter-spacing: -1px;
+    animation: aparecer 1s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .card p {
@@ -93,8 +105,9 @@ h1 {
 }
 
 .cita-marcelino {
-    margin-bottom: 0 !important;
-    flex: 1;
+    font-size: 0.9rem;
+    font-style: italic;
+    opacity: 0.85;
 }
 
 /* 6. BOTONES Y ANIMACIONES */
@@ -213,9 +226,8 @@ input:focus {
 }
 
 .logo-colegio {
-    max-width: 120px; /* Ajusta el tamaño según tu logo */
-    height: auto;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+    max-width: 200px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
 }
 
 /* ESTILO PARA LA CARD (Asegurando que sea blanca y destaque sobre el fondo) */
@@ -230,8 +242,8 @@ input:focus {
 
 /* EFECTO PARA LA FOTO DEL PATRONO */
 .foto-patrono {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border: 3px solid var(--primario);
     transition: transform 0.3s ease;
 }
