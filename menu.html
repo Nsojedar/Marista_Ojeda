@@ -4,222 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Misión Marista PRO</title>
-    <style>
-       :root {
-    --p: #4e8fa3;
-    --b: #5e9dc2;
-    --ex: #28a745;
-    --er: #d9534f;
-}
-
-body {
-    margin: 0;
-    background: linear-gradient(-45deg, #e0eafc, #cfdef3, #8eb9eb, #447ab4);
-    background-size: 400% 400%;
-    animation: gradientBlue 12s ease infinite;
-    min-height: 100vh;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    overflow: hidden;
-}
-
-/* ANIMACIÓN FONDO */
-@keyframes gradientBlue {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* FONDO MATEMÁTICO */
-.math-bg {
-    position: absolute;
-    color: rgba(0, 74, 153, 0.18);
-    font-weight: 900;
-    z-index: -1;
-    pointer-events: none;
-    animation: float-pro 10s ease-in-out infinite;
-}
-
-.rev { animation: float-reverse 12s ease-in-out infinite !important; }
-
-@keyframes float-pro {
-    0%,100% { transform: translateY(0) rotate(0); }
-    50% { transform: translateY(-40px) rotate(20deg) scale(1.1); }
-}
-
-@keyframes float-reverse {
-    0%,100% { transform: translateY(0) rotate(0); }
-    50% { transform: translateY(40px) rotate(-20deg) scale(1); }
-}
-
-/* CARD */
-.card {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    border-radius: 28px;
-    padding: 40px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-    text-align: center;
-    width: 100%; 
-    max-width: 480px;
-    animation: fadeIn 0.5s ease;
-}
-
-/* TÍTULO ANIMADO */
-h1 {
-    color: var(--p);
-    font-size: 2.2rem;
-    font-weight: 800;
-    animation: pulseTitle 3s infinite;
-}
-
-@keyframes pulseTitle {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-/* PANTALLAS */
-.screen { display: none; }
-.active { display: block; }
-
-/* BOTONES PRO */
-button {
-    padding: 14px 28px;
-    border-radius: 12px;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 8px;
-    background: var(--b);
-    color: white;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* HOVER */
-button:hover:not(:disabled) {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* CLICK */
-button:active {
-    transform: scale(0.95);
-}
-
-/* EFECTO BRILLO */
-button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: 0.5s;
-}
-
-button:hover::after {
-    left: 100%;
-}
-
-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-}
-
-/* BOTÓN SALIR */
-.btn-salir {
-    background: transparent;
-    color: #888;
-    border: 1px solid #ddd;
-    font-size: 0.8rem;
-    padding: 8px 15px;
-    box-shadow: none;
-}
-
-.btn-salir:hover {
-    color: var(--er);
-    border-color: var(--er);
-}
-
-/* INPUT */
-input {
-    width: 85%;
-    padding: 16px;
-    border-radius: 16px;
-    border: 2px solid #ddd;
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-input:focus {
-    outline: none;
-    border-color: var(--p);
-}
-
-/* ICONO COHETE */
-.rocket-icon {
-    font-size: 4.5rem;
-    margin-bottom: 15px;
-    animation: float 3s ease-in-out infinite;
-    transition: 0.3s;
-}
-
-.rocket-icon:hover {
-    transform: translateY(-20px) rotate(-10deg);
-}
-
-/* ANIMACIÓN COHETE */
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* TEXTO */
-.texto-llamativo {
-    color: var(--p);
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-/* PISTA */
-.pista {
-    display: none;
-    background: #fff8e1;
-    padding: 15px;
-    border-radius: 15px;
-    color: #856404;
-    border: 1px dashed #ffeeba;
-    animation: slideDown 0.3s ease;
-}
-
-/* TAG */
-#tema-tag {
-    background: var(--p);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-}
-
-/* ANIMACIONES */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; }
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; }
-}
-    </style>
+    <link rel="stylesheet" href="estilo.css">
 </head>
+
 <body>
 
 <div class="math-bg" style="top: 2%; left: 2%; font-size: 10rem;">∑</div>
@@ -235,8 +22,8 @@ input:focus {
         <h1>INICIA EL DESAFÍO</h1>
         <p>Selecciona un nivel para comenzar:</p>
         <button onclick="iniciar(8)">8vo EGB</button>
-        <button id="btn9" onclick="iniciar(9)" disabled>9no EGB 🔒</button>
-        <button id="btn10" onclick="iniciar(10)" disabled>10mo EGB 🔒</button>
+        <button id="btn9" onclick="iniciar(9)" >9no EGB </button>
+        <button id="btn10" onclick="iniciar(10)" >10mo EGB </button>
         <p class="texto-llamativo">¿Estás listo para demostrar lo que sabes? 🫡</p>
         <button onclick="window.location.href='index.html'">
         Volver al inicio</button>
@@ -244,25 +31,119 @@ input:focus {
 </div>
 
 <div id="juego" class="screen">
-    <div class="card">
-        <div id="tema-tag">MATEMÁTICAS</div>
-        <div id="pista-box" class="pista"></div>
-        <p id="pregunta-box" style="font-size: 1.3rem; font-weight: bold;"></p>
-        <input id="respuesta-txt" type="text" placeholder="Tu respuesta..." autocomplete="off">
-        <br>
-        <button onclick="comprobar()">Abrir Puerta</button>
-        <p id="msg" style="min-height: 24px; font-weight: bold;"></p>
-        <p style="color: #888; font-size: 0.8rem; margin-bottom: 5px;">Puerta <span id="puerta-cont">1</span> de 5</p>
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-        <button class="btn-salir" onclick="volverAlMenu()">🏃 Abandonar el Desafío</button>
+    <div class="game-container">
+        
+        <div class="sun"></div>
+        <div class="escenario">
+            <div class="ground"></div>
+            <div id="player" class="personaje">🙂</div>
+            <div class="bandera">M</div>
+        </div>
+
+        <div class="hud">
+            <span id="corazones-ui">❤️ ❤️ ❤️</span>
+            <span style="margin-left: 20px; font-weight: bold;">PUNTOS: <span id="puntos-val">0</span></span>
+        </div>
+
+        <div class="pregunta-box">
+            <p id="tema-tag" style="color: #888; font-size: 0.8rem; text-transform: uppercase;">Matemáticas</p>
+            <p id="pregunta-box-text" style="font-size: 1.3rem; font-weight: bold;"></p>
+            
+            <div style="margin: 10px 0;">
+                 <input id="respuesta-txt" type="text" placeholder="Ej: 3/4">
+                <button class="btn-construir" onclick="comprobar()">CONSTRUIR</button>
+            </div>
+
+            <p id="msg" style="height: 20px; font-weight: bold; margin: 5px;"></p>
+            <div id="pista-box" style="display:none; color: #e67e22; font-size: 0.8rem; margin-bottom: 5px;"></div>
+            <p style="color: #888; font-size: 0.7rem;">Puerta <span id="puerta-cont">1</span> de 5</p>
+        </div>
+
     </div>
 </div>
 
 <script>
+    // Se agregan estas variables y funciones a tu <script> actual
     let cursoActual = 8;
-    let puerta = 0;
-    let actual = {};
-    let temasUsados = [];
+let puerta = 0;
+let actual = {};
+let temasUsados = [];
+let vidas = 3;
+
+    // Modificamos tu función iniciar para resetear vidas
+    function iniciar(n) {
+        cursoActual = n;
+        puerta = 0;
+        vidas = 3;
+        temasUsados = [];
+        actualizarVidasUI();
+        document.getElementById('menu').classList.remove('active');
+        document.getElementById('juego').classList.add('active');
+        generarMision();
+    }
+
+    function actualizarVidasUI() {
+        let txt = "";
+        for(let i=0; i<vidas; i++) txt += "❤️ ";
+        for(let i=0; i<(3-vidas); i++) txt += "🖤 "; // Corazón perdido
+        document.getElementById('corazones-ui').innerText = txt;
+    }
+
+    // Actualizamos tu función actualizarUI para mover al muñeco
+    function actualizarUI() {
+        document.getElementById('tema-tag').innerText = actual.t;
+        document.getElementById('pregunta-box-text').innerText = actual.q;
+        document.getElementById('puerta-cont').innerText = puerta + 1;
+        document.getElementById('puntos-val').innerText = puerta * 10;
+        document.getElementById('respuesta-txt').value = "";
+        document.getElementById('msg').innerText = "";
+        document.getElementById('pista-box').style.display = "none";
+        document.getElementById('respuesta-txt').focus();
+
+        // Mover el muñeco según la puerta
+        let avance = 15 + (puerta * 17); 
+        document.getElementById('player').style.left = avance + "%";
+    }
+
+    // Modificamos comprobar para restar vidas
+    function comprobar() {
+        let input = document.getElementById('respuesta-txt').value.replace(',', '.');
+        let userR = input.trim();
+
+        if (userR === actual.r) {
+            puerta++;
+            if (puerta < 5) {
+    document.getElementById('msg').innerText = "✅ ¡Correcto!";
+    document.getElementById('msg').style.color = "green";
+    setTimeout(generarMision, 800);
+} else {
+    // 🚩 mover a la bandera
+    document.getElementById('player').style.left = "85%";
+
+    // (opcional) animar bandera
+    document.querySelector('.bandera').classList.add('win');
+
+    setTimeout(completar, 500);
+}
+        } else {
+            vidas--;
+    actualizarVidasUI();
+
+            if (vidas <= 0) {
+                alert("Has perdido tus vidas. ¡Inténtalo de nuevo!");
+                location.reload(); 
+            } else {
+                document.getElementById('msg').innerText = "❌ Incorrecto";
+                document.getElementById('msg').style.color = "red";
+                let box = document.getElementById('pista-box');
+                box.innerText = "💡 Ayuda: " + actual.p;
+                box.style.display = "block";
+            }
+        }
+    }
+</script>
+
+<script>
 
     function volverAlMenu() {
         if(confirm("¿Seguro que quieres salir? Perderás el progreso de este nivel.")) {
@@ -271,91 +152,154 @@ input:focus {
         }
     }
 
-    function iniciar(n) {
-        cursoActual = n;
-        puerta = 0;
-        temasUsados = [];
-        document.getElementById('menu').classList.remove('active');
-        document.getElementById('juego').classList.add('active');
-        generarMision();
-    }
-
     function generarMision() {
-        let banco = [];
-        
-        // --- BANCO DE PREGUNTAS POR NIVEL ---
-        if (cursoActual == 8) {
-            banco = [
-                { t: "Números Enteros", q: "Resuelve: (-15) + (8)", r: -7, p: "Signos distintos se restan y queda el signo del mayor." },
-                { t: "Valor Absoluto", q: "¿Cuál es el | -25 |?", r: 25, p: "Es la distancia al cero, siempre positiva." },
-                { t: "Fracciones Homogéneas", q: "Calcula 3/5 + 4/5 (en decimal)", r: 1.4, p: "Suma los numeradores y divide para el denominador." },
-                { t: "Fracciones Heterogéneas", q: "Calcula 1/2 + 1/4 (en decimal)", r: 0.75, p: "Busca un denominador común (4)." },
-                { t: "Potencias", q: "¿Cuánto es 4 al cubo (4³)?", r: 64, p: "Multiplica: 4 x 4 x 4." },
-                { t: "Radicación", q: "¿Raíz cuadrada de 144?", r: 12, p: "Busca un número que multiplicado por sí mismo dé 144." },
-                { t: "Geometría", q: "¿Cuántos grados mide un ángulo recto?", r: 90, p: "Es el ángulo en forma de 'L'." }
-            ];
-        } 
-        else if (cursoActual == 9) {
-            banco = [
-                { t: "Números Reales", q: "Calcula: 2.5 x 10³", r: 2500, p: "Mueve la coma 3 espacios a la derecha." },
-                { t: "Polinomios", q: "Si P(x)=2x+5, halla P(3)", r: 11, p: "Reemplaza la x por 3 -> 2(3)+5." },
-                { t: "Producto Cartesiano", q: "Si A={1,2} y B={a,b,c}, ¿cuántos pares tiene AxB?", r: 6, p: "Multiplica el número de elementos: 2 x 3." },
-                { t: "Pitágoras", q: "Catetos 3 y 4. ¿Hipotenusa?", r: 5, p: "h² = 3² + 4²." },
-                { t: "Ecuaciones", q: "Resuelve: 2x - 10 = 0", r: 5, p: "El 10 pasa a sumar y el 2 a dividir." },
-                { t: "Áreas", q: "Área de un triángulo de base 10 y altura 5", r: 25, p: "(Base x Altura) / 2." }
-            ];
-        } 
-        else if (cursoActual == 10) {
-            banco = [
-                { t: "Trigonometría", q: "Seno de un ángulo donde Opuesto=5 e Hipotenusa=10", r: 0.5, p: "Seno = Opuesto / Hipotenusa." },
-                { t: "Funciones", q: "Pendiente de la función y = 4x + 2", r: 4, p: "La pendiente es el número que acompaña a la x." },
-                { t: "Estadística", q: "Media de 5, 10, 15", r: 10, p: "Suma los tres y divide para 3." },
-                { t: "Volumen", q: "Volumen de un cubo de lado 3", r: 27, p: "Lado al cubo (3x3x3)." },
-                { t: "Ecuaciones Cuadráticas", q: "¿Cuántas soluciones tiene x² = 16?", r: 2, p: "Tiene una positiva (+4) y una negativa (-4)." },
-                { t: "Factorización", q: "Factor común de 5x + 10", r: 5, p: "¿Qué número divide a ambos términos?" }
-            ];
-        }
 
-        // --- LÓGICA PARA NO REPETIR TEMAS ---
-        let filtrado = banco.filter(item => !temasUsados.includes(item.t));
-        let seleccion = filtrado[Math.floor(Math.random() * filtrado.length)];
-        
-        temasUsados.push(seleccion.t);
-        actual = seleccion;
-        actualizarUI();
+    let tipos = [];
+
+    if (cursoActual == 8) {
+        tipos = ["enteros", "fracciones", "potencias", "raices"];
+    } 
+    else if (cursoActual == 9) {
+        tipos = ["polinomios", "pitagoras", "producto"];
+    } 
+    else if (cursoActual == 10) {
+        tipos = ["trigonometria", "funciones", "estadistica"];
     }
 
-    function actualizarUI() {
-        document.getElementById('tema-tag').innerText = actual.t;
-        document.getElementById('pregunta-box').innerText = actual.q;
-        document.getElementById('puerta-cont').innerText = puerta + 1;
-        document.getElementById('respuesta-txt').value = "";
-        document.getElementById('msg').innerText = "";
-        document.getElementById('pista-box').style.display = "none";
-        document.getElementById('respuesta-txt').focus();
+    let tipo = tipos[Math.floor(Math.random() * tipos.length)];
+
+    // 🔥 GENERADORES DINÁMICOS
+
+    if (tipo === "enteros") {
+        let a = Math.floor(Math.random() * 50) - 25;
+        let b = Math.floor(Math.random() * 50) - 25;
+        actual = {
+            t: "Números Enteros",
+            q: `Resuelve: (${a}) + (${b})`,
+            r: a + b,
+            p: "Suma de enteros con signos."
+        };
     }
 
-    function comprobar() {
-        let input = document.getElementById('respuesta-txt').value.replace(',', '.');
-        let userR = parseFloat(input);
+   else if (tipo === "fracciones") {
+    let a = Math.floor(Math.random() * 5) + 1;
+    let b = Math.floor(Math.random() * 5) + 1;
+    let c = Math.floor(Math.random() * 5) + 1;
+    let d = Math.floor(Math.random() * 5) + 1;
 
-        if (!isNaN(userR) && Math.abs(userR - actual.r) < 0.01) {
-            puerta++;
-            if (puerta < 5) {
-                document.getElementById('msg').innerText = "✅ ¡Correcto! Avanzas.";
-                document.getElementById('msg').style.color = "var(--ex)";
-                setTimeout(generarMision, 1000);
-            } else {
-                completar();
-            }
-        } else {
-            document.getElementById('msg').innerText = "❌ Incorrecto";
-            document.getElementById('msg').style.color = "var(--er)";
-            let box = document.getElementById('pista-box');
-            box.innerText = "💡 Ayuda: " + actual.p;
-            box.style.display = "block";
-        }
+    let num = (a * d) + (c * b);
+    let den = b * d;
+
+    let simplificada = simplificar(num, den);
+
+    actual = {
+        t: "Fracciones",
+        q: `Calcula: ${a}/${b} + ${c}/${d}`,
+        r: simplificada[0] + "/" + simplificada[1],
+        p: "Multiplica cruzado y suma."
+    };
+}
+
+    else if (tipo === "polinomios") {
+        let x = Math.floor(Math.random() * 5) + 1;
+        let a = Math.floor(Math.random() * 5) + 1;
+        let b = Math.floor(Math.random() * 10);
+
+        actual = {
+            t: "Polinomios",
+            q: `Si P(x) = ${a}x + ${b}, calcula P(${x})`,
+            r: a*x + b,
+            p: "Reemplaza x."
+        };
     }
+
+    else if (tipo === "producto") {
+        let a = Math.floor(Math.random() * 3) + 2;
+        let b = Math.floor(Math.random() * 3) + 2;
+
+        actual = {
+            t: "Producto Cartesiano",
+            q: `Si A tiene ${a} elementos y B tiene ${b}, ¿cuántos pares hay?`,
+            r: a * b,
+            p: "Multiplica tamaños."
+        };
+    }
+
+    else if (tipo === "trigonometria") {
+        let op = Math.floor(Math.random() * 10) + 1;
+        let hip = op + Math.floor(Math.random() * 10) + 1;
+
+        actual = {
+            t: "Trigonometría",
+            q: `Seno = ${op}/${hip}. ¿Resultado decimal?`,
+            r: parseFloat((op/hip).toFixed(2)),
+            p: "Seno = opuesto/hipotenusa."
+        };
+    }
+
+    else if (tipo === "funciones") {
+        let m = Math.floor(Math.random() * 5) + 1;
+
+        actual = {
+            t: "Funciones",
+            q: `¿Pendiente de y = ${m}x + 2?`,
+            r: m,
+            p: "Es el número de x."
+        };
+    }
+
+    else if (tipo === "estadistica") {
+        let a = Math.floor(Math.random() * 10);
+        let b = Math.floor(Math.random() * 10);
+        let c = Math.floor(Math.random() * 10);
+
+        actual = {
+            t: "Media",
+            q: `Media de ${a}, ${b}, ${c}`,
+            r: (a + b + c) / 3,
+            p: "Suma y divide para 3."
+        };
+    }
+
+    else if (tipo === "pitagoras") {
+        let a = 3;
+        let b = 4;
+
+        actual = {
+            t: "Pitágoras",
+            q: `Catetos ${a} y ${b}. ¿Hipotenusa?`,
+            r: 5,
+            p: "Caso clásico 3-4-5."
+        };
+    }
+
+    else if (tipo === "potencias") {
+        let base = Math.floor(Math.random() * 5) + 2;
+
+        actual = {
+            t: "Potencias",
+            q: `¿Cuánto es ${base}²?`,
+            r: base * base,
+            p: "Multiplica el número por sí mismo."
+        };
+    }
+
+    else if (tipo === "raices") {
+        let num = [25, 36, 49, 64][Math.floor(Math.random() * 4)];
+
+        actual = {
+            t: "Raíces",
+            q: `√${num}`,
+            r: Math.sqrt(num),
+            p: "Busca raíz exacta."
+        };
+    }
+
+    actualizarUI();
+}
+
+    
+
 
     function completar() {
         alert("🎉 ¡Misión cumplida! Has dominado el nivel.");
@@ -368,7 +312,15 @@ input:focus {
     document.getElementById('respuesta-txt').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') comprobar();
     });
+
+    function simplificar(numerador, denominador) {
+    function mcd(a, b) {
+        return b === 0 ? a : mcd(b, a % b);
+    }
+    let divisor = mcd(numerador, denominador);
+    return [numerador / divisor, denominador / divisor];
+}
 </script>
 
 </body>
-</html>
+</html>                                                               
