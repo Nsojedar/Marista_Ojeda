@@ -3,324 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misión Marista PRO</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Misión Marista - Inicio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-
-<div class="math-bg" style="top: 2%; left: 2%; font-size: 10rem;">∑</div>
-<div class="math-bg rev" style="top: 5%; right: 5%; font-size: 8rem;">π</div>
-<div class="math-bg" style="top: 40%; left: 5%; font-size: 9rem;">√</div>
-<div class="math-bg rev" style="bottom: 5%; left: 5%; font-size: 7rem;">∞</div>
-<div class="math-bg" style="bottom: 2%; right: 2%; font-size: 11rem;">∫</div>
-<div class="math-bg rev" style="top: 45%; right: 5%; font-size: 7rem;">α</div>
-
-<div id="menu" class="screen active">
-    <div class="card">
-       <div class="rocket-icon">🚀</div>
-        <h1>INICIA EL DESAFÍO</h1>
-        <p>Selecciona un nivel para comenzar:</p>
-        <button onclick="iniciar(8)">8vo EGB</button>
-        <button id="btn9" onclick="iniciar(9)" >9no EGB </button>
-        <button id="btn10" onclick="iniciar(10)" >10mo EGB </button>
-        <p class="texto-llamativo">¿Estás listo para demostrar lo que sabes? 🫡</p>
-        <button onclick="window.location.href='index.html'">
-        Volver al inicio</button>
-    </div>
-</div>
-
-<div id="juego" class="screen">
-    <div class="game-container">
-        
-        <div class="sun"></div>
-        <div class="escenario">
-            <div class="ground"></div>
-            <div id="player" class="personaje">🙂</div>
-            <div class="bandera">M</div>
-        </div>
-
-        <div class="hud">
-            <span id="corazones-ui">❤️ ❤️ ❤️</span>
-            <span style="margin-left: 20px; font-weight: bold;">PUNTOS: <span id="puntos-val">0</span></span>
-        </div>
-
-        <div class="pregunta-box">
-            <p id="tema-tag" style="color: #888; font-size: 0.8rem; text-transform: uppercase;">Matemáticas</p>
-            <p id="pregunta-box-text" style="font-size: 1.3rem; font-weight: bold;"></p>
+<body class="fondo-colegio"> 
+    
+    <div class="screen active">
+        <div class="card main-start">
             
-            <div style="margin: 10px 0;">
-                 <input id="respuesta-txt" type="text" placeholder="Ej: 3/4">
-                <button class="btn-construir" onclick="comprobar()">CONSTRUIR</button>
+            <div class="logo-contenedor">
+                <img src="https://i.ibb.co/SDvmZ3pp/images-removebg-preview.png" alt="Logo Colegio Marista" class="logo-colegio">
             </div>
 
-            <p id="msg" style="height: 20px; font-weight: bold; margin: 5px;"></p>
-            <div id="pista-box" style="display:none; color: #e67e22; font-size: 0.8rem; margin-bottom: 5px;"></div>
-            <p style="color: #888; font-size: 0.7rem;">Puerta <span id="puerta-cont">1</span> de 5</p>
+            <div class="header-patrono">
+                <img src="https://i.ibb.co/60pfqqwW/tu-imagen.jpg" alt="San Marcelino" class="foto-patrono">
+                <div class="pista cita-marcelino">
+                    "Para educar bien a los niños hay que amarlos, y amarlos a todos por igual" 
+                    <br><strong>— San Marcelino Champagnat</strong>
+                </div>
+            </div>
+            
+            <h1> Misión Marista</h1>
+
+            <p>Bienvenido, Joven Marista. Acepta los desafíos matemáticos y demuestra tus habilidades.</p>
+            
+            <button onclick="irJuego()" class="btn-inicio">
+                ¡Aceptar Desafío!
+            </button>
+
+            <div class="footer-info">
+                <p><strong>Somos Maristas</strong> | Educación Integral y Solidaria</p>
+            </div>
         </div>
-
     </div>
-</div>
 
 <script>
-    // Se agregan estas variables y funciones a tu <script> actual
-    let cursoActual = 8;
-let puerta = 0;
-let actual = {};
-let temasUsados = [];
-let vidas = 3;
-
-    // Modificamos tu función iniciar para resetear vidas
-    function iniciar(n) {
-        cursoActual = n;
-        puerta = 0;
-        vidas = 3;
-        temasUsados = [];
-        actualizarVidasUI();
-        document.getElementById('menu').classList.remove('active');
-        document.getElementById('juego').classList.add('active');
-        generarMision();
-    }
-
-    function actualizarVidasUI() {
-        let txt = "";
-        for(let i=0; i<vidas; i++) txt += "❤️ ";
-        for(let i=0; i<(3-vidas); i++) txt += "🖤 "; // Corazón perdido
-        document.getElementById('corazones-ui').innerText = txt;
-    }
-
-    // Actualizamos tu función actualizarUI para mover al muñeco
-    function actualizarUI() {
-        document.getElementById('tema-tag').innerText = actual.t;
-        document.getElementById('pregunta-box-text').innerText = actual.q;
-        document.getElementById('puerta-cont').innerText = puerta + 1;
-        document.getElementById('puntos-val').innerText = puerta * 10;
-        document.getElementById('respuesta-txt').value = "";
-        document.getElementById('msg').innerText = "";
-        document.getElementById('pista-box').style.display = "none";
-        document.getElementById('respuesta-txt').focus();
-
-        // Mover el muñeco según la puerta
-        let avance = 15 + (puerta * 17); 
-        document.getElementById('player').style.left = avance + "%";
-    }
-
-    // Modificamos comprobar para restar vidas
-    function comprobar() {
-        let input = document.getElementById('respuesta-txt').value.replace(',', '.');
-        let userR = input.trim();
-
-        if (userR === actual.r) {
-            puerta++;
-            if (puerta < 5) {
-    document.getElementById('msg').innerText = "✅ ¡Correcto!";
-    document.getElementById('msg').style.color = "green";
-    setTimeout(generarMision, 800);
-} else {
-    // 🚩 mover a la bandera
-    document.getElementById('player').style.left = "85%";
-
-    // (opcional) animar bandera
-    document.querySelector('.bandera').classList.add('win');
-
-    setTimeout(completar, 500);
-}
-        } else {
-            vidas--;
-    actualizarVidasUI();
-
-            if (vidas <= 0) {
-                alert("Has perdido tus vidas. ¡Inténtalo de nuevo!");
-                location.reload(); 
-            } else {
-                document.getElementById('msg').innerText = "❌ Incorrecto";
-                document.getElementById('msg').style.color = "red";
-                let box = document.getElementById('pista-box');
-                box.innerText = "💡 Ayuda: " + actual.p;
-                box.style.display = "block";
-            }
-        }
-    }
-</script>
-
-<script>
-
-    function volverAlMenu() {
-        if(confirm("¿Seguro que quieres salir? Perderás el progreso de este nivel.")) {
-            document.getElementById('juego').classList.remove('active');
-            document.getElementById('menu').classList.add('active');
-        }
-    }
-
-    function generarMision() {
-
-    let tipos = [];
-
-    if (cursoActual == 8) {
-        tipos = ["enteros", "fracciones", "potencias", "raices"];
-    } 
-    else if (cursoActual == 9) {
-        tipos = ["polinomios", "pitagoras", "producto"];
-    } 
-    else if (cursoActual == 10) {
-        tipos = ["trigonometria", "funciones", "estadistica"];
-    }
-
-    let tipo = tipos[Math.floor(Math.random() * tipos.length)];
-
-    // 🔥 GENERADORES DINÁMICOS
-
-    if (tipo === "enteros") {
-        let a = Math.floor(Math.random() * 50) - 25;
-        let b = Math.floor(Math.random() * 50) - 25;
-        actual = {
-            t: "Números Enteros",
-            q: `Resuelve: (${a}) + (${b})`,
-            r: a + b,
-            p: "Suma de enteros con signos."
-        };
-    }
-
-   else if (tipo === "fracciones") {
-    let a = Math.floor(Math.random() * 5) + 1;
-    let b = Math.floor(Math.random() * 5) + 1;
-    let c = Math.floor(Math.random() * 5) + 1;
-    let d = Math.floor(Math.random() * 5) + 1;
-
-    let num = (a * d) + (c * b);
-    let den = b * d;
-
-    let simplificada = simplificar(num, den);
-
-    actual = {
-        t: "Fracciones",
-        q: `Calcula: ${a}/${b} + ${c}/${d}`,
-        r: simplificada[0] + "/" + simplificada[1],
-        p: "Multiplica cruzado y suma."
-    };
-}
-
-    else if (tipo === "polinomios") {
-        let x = Math.floor(Math.random() * 5) + 1;
-        let a = Math.floor(Math.random() * 5) + 1;
-        let b = Math.floor(Math.random() * 10);
-
-        actual = {
-            t: "Polinomios",
-            q: `Si P(x) = ${a}x + ${b}, calcula P(${x})`,
-            r: a*x + b,
-            p: "Reemplaza x."
-        };
-    }
-
-    else if (tipo === "producto") {
-        let a = Math.floor(Math.random() * 3) + 2;
-        let b = Math.floor(Math.random() * 3) + 2;
-
-        actual = {
-            t: "Producto Cartesiano",
-            q: `Si A tiene ${a} elementos y B tiene ${b}, ¿cuántos pares hay?`,
-            r: a * b,
-            p: "Multiplica tamaños."
-        };
-    }
-
-    else if (tipo === "trigonometria") {
-        let op = Math.floor(Math.random() * 10) + 1;
-        let hip = op + Math.floor(Math.random() * 10) + 1;
-
-        actual = {
-            t: "Trigonometría",
-            q: `Seno = ${op}/${hip}. ¿Resultado decimal?`,
-            r: parseFloat((op/hip).toFixed(2)),
-            p: "Seno = opuesto/hipotenusa."
-        };
-    }
-
-    else if (tipo === "funciones") {
-        let m = Math.floor(Math.random() * 5) + 1;
-
-        actual = {
-            t: "Funciones",
-            q: `¿Pendiente de y = ${m}x + 2?`,
-            r: m,
-            p: "Es el número de x."
-        };
-    }
-
-    else if (tipo === "estadistica") {
-        let a = Math.floor(Math.random() * 10);
-        let b = Math.floor(Math.random() * 10);
-        let c = Math.floor(Math.random() * 10);
-
-        actual = {
-            t: "Media",
-            q: `Media de ${a}, ${b}, ${c}`,
-            r: (a + b + c) / 3,
-            p: "Suma y divide para 3."
-        };
-    }
-
-    else if (tipo === "pitagoras") {
-        let a = 3;
-        let b = 4;
-
-        actual = {
-            t: "Pitágoras",
-            q: `Catetos ${a} y ${b}. ¿Hipotenusa?`,
-            r: 5,
-            p: "Caso clásico 3-4-5."
-        };
-    }
-
-    else if (tipo === "potencias") {
-        let base = Math.floor(Math.random() * 5) + 2;
-
-        actual = {
-            t: "Potencias",
-            q: `¿Cuánto es ${base}²?`,
-            r: base * base,
-            p: "Multiplica el número por sí mismo."
-        };
-    }
-
-    else if (tipo === "raices") {
-        let num = [25, 36, 49, 64][Math.floor(Math.random() * 4)];
-
-        actual = {
-            t: "Raíces",
-            q: `√${num}`,
-            r: Math.sqrt(num),
-            p: "Busca raíz exacta."
-        };
-    }
-
-    actualizarUI();
-}
-
-    
-
-
-    function completar() {
-        alert("🎉 ¡Misión cumplida! Has dominado el nivel.");
-        if (cursoActual == 8) document.getElementById('btn9').disabled = false;
-        if (cursoActual == 9) document.getElementById('btn10').disabled = false;
-        document.getElementById('juego').classList.remove('active');
-        document.getElementById('menu').classList.add('active');
-    }
-
-    document.getElementById('respuesta-txt').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') comprobar();
-    });
-
-    function simplificar(numerador, denominador) {
-    function mcd(a, b) {
-        return b === 0 ? a : mcd(b, a % b);
-    }
-    let divisor = mcd(numerador, denominador);
-    return [numerador / divisor, denominador / divisor];
+function irJuego(){
+    window.location.href = "menu.html";
 }
 </script>
 
 </body>
-</html>                                                               
+</html>
